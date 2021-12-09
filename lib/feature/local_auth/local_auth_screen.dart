@@ -51,30 +51,32 @@ class _LocalAuthScreenState extends State<LocalAuthScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // body: Center(
-      //   child: Column(
-      //     mainAxisAlignment: MainAxisAlignment.center,
-      //     children: [
-      //       IconButton(
-      //           icon: Icon(
-      //             Icons.fingerprint,
-      //             size: 50,
-      //           ),
-      //           onPressed: () async {
-      //             bool weCanCheckBiometrics =
-      //                 await localAuth.canCheckBiometrics;
-      //             if (weCanCheckBiometrics) {
-      //               bool _auth = await localAuth.authenticate(
-      //                 localizedReason: 'Silahkan Cek Biometrics',
-      //               );
-      //               print(_auth);
-      //             }
-      //           }),
-      //       SizedBox(height: 16),
-      //       checkAvailbale(context),
-      //     ],
-      //   ),
-      // ),
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        leading: Padding(
+          padding: EdgeInsets.only(left: 8, top: 30),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              InkWell(
+                onTap: () {
+                  Navigator.pop(context);
+                },
+                child: Icon(
+                  Icons.arrow_back,
+                  color: Colors.white,
+                  size: 24.0,
+                ),
+              ),
+              SizedBox(
+                width: 16,
+              ),
+            ],
+          ),
+        ),
+      ),
       body: Stack(
         children: [
           Container(
@@ -88,7 +90,7 @@ class _LocalAuthScreenState extends State<LocalAuthScreen> {
           ),
           SafeArea(
             child: Padding(
-              padding: EdgeInsets.all(16),
+              padding: EdgeInsets.only(left: 8, top: 16),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -97,7 +99,7 @@ class _LocalAuthScreenState extends State<LocalAuthScreen> {
                           textStyle:
                               TextStyle(color: Colors.white, fontSize: 50))),
                   SizedBox(
-                    height: 16,
+                    height: 4,
                   ),
                   Text('Welcome to Page Local Auth Demo',
                       style: GoogleFonts.lato(
