@@ -2,7 +2,7 @@
     package="com.example.flutter_research">
    <uses-permission android:name="android.permission.USE_BIOMETRIC"/>
    <application
-        android:label="flutter_research"
+        android:label="Flutter Research"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
