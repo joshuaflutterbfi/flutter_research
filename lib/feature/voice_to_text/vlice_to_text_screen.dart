@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:speech_to_text/speech_recognition_result.dart';
 import 'package:speech_to_text/speech_to_text.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class VoiceToTextScreen extends StatefulWidget {
   @override
@@ -29,7 +30,9 @@ class _VoiceToTextScreenState extends State<VoiceToTextScreen> {
   /// Each time to start a speech recognition session
   void _startListening() async {
     await _speechToText.listen(
-        onResult: _onSpeechResult, localeId: _language[_index]);
+        onResult: _onSpeechResult,
+        localeId: _language[_index],
+        pauseFor: Duration(seconds: 3));
     setState(() {});
   }
 
@@ -48,6 +51,24 @@ class _VoiceToTextScreenState extends State<VoiceToTextScreen> {
     setState(() {
       _lastWords = result.recognizedWords;
     });
+
+    if (result.finalResult) {
+      if (_lastWords.toLowerCase().contains('back')) {
+        Navigator.pop(context);
+      } else if (_lastWords.toLowerCase().contains('kembali')) {
+        Navigator.pop(context);
+      } else if (_lastWords.toLowerCase().contains('google')) {
+        _launchURL('https://google.co.id');
+      }
+    }
+  }
+
+  Future<void> _launchURL(String type) async {
+    if (await canLaunch(type)) {
+      await launch(type);
+    } else {
+      throw 'Could not launch $type';
+    }
   }
 
   @override
