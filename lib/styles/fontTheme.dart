@@ -46,3 +46,9 @@ TextStyle sans16Black = GoogleFonts.openSans(
     fontSize: 16,
     color: Colors.black,
     letterSpacing: 1.0);
+
+TextStyle sans14Black = GoogleFonts.openSans(
+    fontWeight: FontWeight.w700,
+    fontSize: 14,
+    color: Colors.black,
+    letterSpacing: 1.0);
