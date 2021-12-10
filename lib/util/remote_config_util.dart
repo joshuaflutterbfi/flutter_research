@@ -8,13 +8,14 @@ class FeatureRemoteConfig {
 
   Future<RemoteConfigHomeModel> checkPageRomoteConfigSpecific(
       String type) async {
-    final RemoteConfig remoteConfig = await RemoteConfig.instance;
+    final RemoteConfig remoteConfig = RemoteConfig.instance;
     remoteConfig.setConfigSettings(RemoteConfigSettings(
-      debugMode: true,
+      fetchTimeout: const Duration(seconds: 10),
+      minimumFetchInterval: Duration.zero,
     ));
     if (type == 'home_menu') {
       await remoteConfig.fetch();
-      await remoteConfig.activateFetched();
+      await remoteConfig.fetchAndActivate();
       remoteConfigHomeModel = RemoteConfigHomeModel.fromJson(
           json.decode(remoteConfig.getString('menu')));
 

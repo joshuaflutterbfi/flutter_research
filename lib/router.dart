@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_research/core/resources/router_string.dart';
 import 'package:flutter_research/feature/chat_on_apps/chat_on_apps_screen.dart';
+import 'package:flutter_research/feature/crash_analytics/crash_analytics.dart';
 import 'package:flutter_research/feature/flutter_chart/flutter_chart_screen.dart';
 import 'package:flutter_research/feature/liquid_animation/liquid_animation_screen.dart';
 import 'package:flutter_research/feature/local_auth/local_auth_screen.dart';
@@ -85,6 +86,16 @@ class Routers {
       case '/home_route':
         return PageRouteBuilder<dynamic>(
             pageBuilder: (_, __, ___) => HomeScreen(),
+            settings: RouteSettings(name: settings.name),
+            transitionsBuilder: (_, Animation<double> a, __, Widget c) =>
+                FadeTransition(
+                  opacity: a,
+                  child: c,
+                ));
+
+      case '/crashlytics_route':
+        return PageRouteBuilder<dynamic>(
+            pageBuilder: (_, __, ___) => CrashLyticsScreen(),
             settings: RouteSettings(name: settings.name),
             transitionsBuilder: (_, Animation<double> a, __, Widget c) =>
                 FadeTransition(
