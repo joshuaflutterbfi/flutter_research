@@ -42,6 +42,10 @@ dependencies:
   sqflite: ^1.3.2
   path_provider: ^2.0.0
   file_picker: ^3.0.0
+  guardian_liveness:
+    git:
+      url: git://github.com/nsNeruno/guardian_liveness.git
+      ref: master
   
 
 dev_dependencies:
