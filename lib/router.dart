@@ -4,6 +4,7 @@ import 'package:flutter_research/feature/chat_on_apps/chat_on_apps_screen.dart';
 import 'package:flutter_research/feature/crash_analytics/crash_analytics.dart';
 import 'package:flutter_research/feature/flutter_chart/flutter_chart_screen.dart';
 import 'package:flutter_research/feature/liquid_animation/liquid_animation_screen.dart';
+import 'package:flutter_research/feature/liveness/liveness_screen.dart';
 import 'package:flutter_research/feature/local_auth/local_auth_screen.dart';
 import 'package:flutter_research/feature/pull_refresh/presentation/screen/pull_refresh_screen.dart';
 import 'package:flutter_research/feature/slider/slider_screen.dart';
@@ -96,6 +97,16 @@ class Routers {
       case '/crashlytics_route':
         return PageRouteBuilder<dynamic>(
             pageBuilder: (_, __, ___) => CrashLyticsScreen(),
+            settings: RouteSettings(name: settings.name),
+            transitionsBuilder: (_, Animation<double> a, __, Widget c) =>
+                FadeTransition(
+                  opacity: a,
+                  child: c,
+                ));
+
+      case '/liveness_route':
+        return PageRouteBuilder<dynamic>(
+            pageBuilder: (_, __, ___) => LivenessScreen(),
             settings: RouteSettings(name: settings.name),
             transitionsBuilder: (_, Animation<double> a, __, Widget c) =>
                 FadeTransition(
